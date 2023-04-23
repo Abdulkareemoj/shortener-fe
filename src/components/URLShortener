@@ -1,4 +1,14 @@
+import axios from 'axios';
+import { useState } from 'react';
+
+import { Box, Button, Heading, Input, InputGroup } from '@chakra-ui/react';
+
 function URLShortener() {
-  return <div>Hello</div>;
+  async function handleSubmit() {}
+  return (
+    <Box pos="relative">
+      <form onSubmit="handleSubmit" />
+    </Box>
+  );
 }
 export default URLShortener;
