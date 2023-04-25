@@ -2,12 +2,13 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Box, Button, Heading, Input, InputGroup } from '@chakra-ui/react';
 import { SERVER_ENDPOINT } from '../config/index';
+import ShortURL from '../../../server/src/models/shortURL.model';
 
 function URLShortener() {
 
 //when creatiing more complicated forms use a library like formik for state management instead
   const [destination, setDestination] = useState()
-
+const [shortURL, setShortURL] = useState<{shortId: string} | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,6 +20,7 @@ const result = await axios.post(`${SERVER_ENDPOINT}/api/createurl`, {
       console.log(result);
 
     debugger;
+  setShortURL(result);
   }
   return (
     <Box pos="relative">
@@ -29,6 +31,10 @@ const result = await axios.post(`${SERVER_ENDPOINT}/api/createurl`, {
        />
       <Button type="submit">Shorten</Button>
       </form>
+      {JSON.stringify(shortURL)}
+      <a href = {`${SERVER_ENDPOINT/shortURL?.shortId}`}>
+      Click Here!
+      </a>
     </Box>
   );
 }
