@@ -12,6 +12,8 @@ const [shortURL, setShortURL] = useState<{shortId: string} | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+  setShortURL(null);
+
 const result = await axios.post(`${SERVER_ENDPOINT}/api/createurl`, {
       destination,
     });
@@ -25,16 +27,19 @@ const result = await axios.post(`${SERVER_ENDPOINT}/api/createurl`, {
   return (
     <Box pos="relative">
       <form onSubmit={handleSubmit}>
+     <InputGroup >
       <Input
       onChange={(e: any)=> setDestination(e.target.value)}
       placeholder="https://example.com"
        />
       <Button type="submit">Shorten</Button>
+      </InputGroup >
       </form>
-      {JSON.stringify(shortURL)}
+      {shortURL &&(
       <a href = {`${SERVER_ENDPOINT/shortURL?.shortId}`}>
       Click Here!
       </a>
+      )}
     </Box>
   );
 }
