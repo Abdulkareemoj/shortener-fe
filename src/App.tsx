@@ -1,10 +1,12 @@
+import { Box } from '@chakra-ui/react';
+
 import URLShortenerForm from './components/URLShortener';
 
 function App() {
   return (
-    <div>
+    <Box>
       <URLShortenerForm />
-    </div>
+    </Box>
   );
 }
 export default App;
