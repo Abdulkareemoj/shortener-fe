@@ -1,12 +1,21 @@
-import { Box } from '@chakra-ui/react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import URLShortenerForm from './components/URLShortener';
+import HandleRedirect from './components/HandleRedirect';
+import Home from './components/Home';
 
 function App() {
   return (
-    <Box>
-      <URLShortenerForm />
-    </Box>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+
+        <Route exact path="/:shortId">
+          <HandleRedirect />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 export default App;
