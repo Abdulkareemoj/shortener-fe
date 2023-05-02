@@ -18,7 +18,7 @@ function HandleRedirect() {
   useEffect(() => {
     async function getData()) {
       return axios
-        .get(`${SERVER_ENDPOINT}/api/url/${shortId}`)
+        .get(`${SERVER_ENDPOINT}/api/createurl/${shortId}`)
         .then((res) => 
           setDestination(res.data.destination));
        
