@@ -19,15 +19,32 @@ function HandleRedirect() {
     async function getData()) {
       return axios
         .get(`${SERVER_ENDPOINT}/api/createurl/${shortId}`)
-        .then((res) => 
-          setDestination(res.data.destination));
-       
-        .catch((err) => {
+        .then((res: { data: { destination: SetStateAction<string | null>; }; }) =>  setDestination(res.data.destination))
+        .catch((err: SetStateAction<undefined>) => {
           setError(err);
         });
     }
     getData();
   }, [shortId]);
-}
 
+  useEffect(()=>{
+    if (destination){
+      window.location.replace(destination);
+    }
+  }[destination]);
+
+  if(!destination && !error){
+    return(
+      <Box
+      height="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center">
+        <Spinner />
+        </Box>
+    );
+  }
+  return <p>(error & JSON.stringify(error))</p>;
+}
 export default HandleRedirect;
+ 
